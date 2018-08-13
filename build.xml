@@ -1,0 +1,43 @@
+<project name="Project" default="classes">
+    <target name="classes">
+        <mkdir dir="classes" />
+        <javac srcdir="src:test" destdir="classes" 
+            classpath="lib/junit-4.11.jar;lib/hamcrest-core-1.3.jar"
+            includeantruntime="false"/>
+    </target>
+    <target name="clean">
+        <delete dir="classes" />
+    </target>
+
+    <target name="run" depends="classes">
+        <java classname="swen90006.machine.SimpleDriver" 
+	    classpath="classes/;lib/junit-4.11.jar;lib/hamcrest-core-1.3.jar">
+	</java>
+    </target>
+
+    <target name="partitioning" depends="classes">
+        <junit printsummary="yes" fork="yes" haltonfailure="yes">
+	    <classpath>
+                <pathelement path="classes/"/>
+                <pathelement path="lib/junit-4.11.jar"/>
+                <pathelement path="lib/hamcrest-core-1.3.jar"/>
+            </classpath>
+            <formatter type="plain"/>
+            <test name="swen90006.machine.PartitioningTests"/>
+        </junit>
+    </target>
+
+    <target name="boundary" depends="classes">
+        <junit printsummary="yes" fork="yes" haltonfailure="yes">
+	    <classpath>
+                <pathelement path="classes/"/>
+                <pathelement path="lib/junit-4.11.jar"/>
+                <pathelement path="lib/hamcrest-core-1.3.jar"/>
+            </classpath>
+            <formatter type="plain"/>
+            <test name="swen90006.machine.BoundaryTests"/>
+        </junit>
+    </target>
+
+
+</project>
