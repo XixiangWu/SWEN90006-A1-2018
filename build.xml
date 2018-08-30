@@ -16,28 +16,35 @@
     </target>
 
     <target name="partitioning" depends="classes">
-        <junit printsummary="yes" fork="yes" haltonfailure="yes">
-	    <classpath>
-                <pathelement path="classes/"/>
-                <pathelement path="lib/junit-4.11.jar"/>
-                <pathelement path="lib/hamcrest-core-1.3.jar"/>
-            </classpath>
-            <formatter type="plain"/>
-            <test name="swen90006.machine.PartitioningTests"/>
-        </junit>
+      <parallel threadCount="1" timeout="5000">
+            <sequential>
+              <junit printsummary="yes" fork="yes" haltonfailure="yes">
+		<classpath>
+                  <pathelement path="classes/"/>
+                  <pathelement path="lib/junit-4.11.jar"/>
+                  <pathelement path="lib/hamcrest-core-1.3.jar"/>
+		</classpath>
+		<formatter type="plain"/>
+		<test name="swen90006.machine.PartitioningTests"/>
+              </junit>
+            </sequential>
+        </parallel>
     </target>
 
-    <target name="boundary" depends="classes">
-        <junit printsummary="yes" fork="yes" haltonfailure="yes">
-	    <classpath>
-                <pathelement path="classes/"/>
-                <pathelement path="lib/junit-4.11.jar"/>
-                <pathelement path="lib/hamcrest-core-1.3.jar"/>
-            </classpath>
-            <formatter type="plain"/>
-            <test name="swen90006.machine.BoundaryTests"/>
-        </junit>
+   <target name="boundary" depends="classes">
+        <parallel threadCount="1" timeout="5000">
+            <sequential>
+                <junit printsummary="yes" fork="yes" haltonfailure="yes">
+        	    <classpath>
+                        <pathelement path="classes/"/>
+                        <pathelement path="lib/junit-4.11.jar"/>
+                        <pathelement path="lib/hamcrest-core-1.3.jar"/>
+                    </classpath>
+                    <formatter type="plain"/>
+                    <test name="swen90006.machine.BoundaryTests"/>
+                </junit>
+            </sequential>
+        </parallel>
     </target>
-
 
 </project>
